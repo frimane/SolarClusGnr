@@ -23,7 +23,7 @@ or with [devtools](https://cran.r-project.org/web/packages/devtools/index.html):
 devtools::install_github("frimane/SolarClusGnr")
 ```
 
-## License
+# License
 
 This package is free and open source software, licensed under GPLv3.
 
