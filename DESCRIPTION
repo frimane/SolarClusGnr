@@ -1,0 +1,16 @@
+Package: SolarClusGnr
+Title: Solar irradiance time-series clustering and downscaling
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Azeddine",
+           family = "Frimane",
+           role = c("aut", "cre"),
+           email = "Azeddine.frimane@uit.ac.ma")
+Description: An unsupervised classification method using Dirichlet process Gaussian mixture model (DPGMM) is proposed in this package. The key 		     benefit of the DPGMM paradigm is that it allows the ability to automatically adapt to the correct complexity level and size of the 	     model, and can, therefore, fit complex probability functions. We apply a Markov chain Monte Carlo algorithm, namely Gibbs sampling 	     for posterior inference. The package also deals with solar irradiance time-series downscaling. It can generate 1-min data from 		     10-15 min solar irradiance databases worldwide. 
+Author: Azeddine Frimane [aut, cre]
+Maintainer: Azeddine Frimane <Azeddine.frimane@uit.ac.ma> 
+License: GPL (>= 2)
+Imports: Matrix, ggplot2, markovchain, matrixcalc, mvtnorm, parallel, grid, pbmcapply, utils, stats, graphics
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1
