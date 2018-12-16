@@ -50,28 +50,28 @@ SIR_Dataa <- function(Ghi_from = NULL, Ehi_from = NULL, Ehi_to = NULL, Xbins = N
   # +++ Le type du jours concernant standard deviation +++
   Tj <- lapply(CI, function(x) abs(diff(x)))
   a <- unlist(lapply(Tj, function(x) sd(x, na.rm = T)))
-  b1 <- mean(a, na.rm = T)
-  b2 <- quantile(a, probs = .75, na.rm = T)
-  b3 <- quantile(a, probs = .95, na.rm = T)
+  b1 <- quantile(a, probs = .75, na.rm = T)
+  b2 <- quantile(a, probs = .50, na.rm = T)
+  b3 <- quantile(a, probs = .97, na.rm = T)
 
   Tjour <- mapply(function(x, j) {
 
     y <- numeric(length(x))
     if(j >= b1){
       if(j < b3) {
-    for (i in 1:length(x)) {
-      if(x[i] >= b2 || is.na(x[i])) y[i] <- 1
-      else y[i] <- 0
-    }
+        for (i in 1:length(x)) {
+          if(x[i] >= b1 || is.na(x[i])) y[i] <- 1
+          else y[i] <- 0
+        }
         } else {
-      for (i in 1:length(x)) {
-        if(x[i] >= b1 || is.na(x[i])) y[i] <- 1
-        else y[i] <- 0
-    }
-      }
+          for (i in 1:length(x)) {
+            if(x[i] >= b2 || is.na(x[i])) y[i] <- 1
+            else y[i] <- 0
+          }
+        }
     } else {
       for (i in 1:length(x)) {
-         y[i] <- 0
+        y[i] <- 0
       }
     }
     return(c(y, 0))
