@@ -11,7 +11,7 @@
 #' @param n_cores numreic(1), is the used number of cores. Defaut is 1. This function uses the parallel calculation for time optimisation.
 #' For WINDOWS users it must be set to 1, since windows platform do not deals with fork() function.
 #' @param mc numreic(1)represents the number of iterations to choose the most probable paths.
-#' Optimal values around 400-600.
+#' Default is 1000.
 #'
 #' @return a list object of 1-min solar irradiance data. Each element represents a day.
 #'
@@ -31,8 +31,12 @@
 #'
 #' @export
 #=============================================================================================
-GenData <- function(clusChar = NULL, stp_from = "10 minutes", n_cores = 1, mc = 400) {
+GenDataa <- function(clusChar = NULL, stp_from = "10 minutes", n_cores = 1, mc = 1000)
+  {
 #=============================================================================================
+
+# In the name of Allah the Merciful
+# =================================
 
   ###########################################################################################
   ##### ******************************* Initialisation  ******************************* #####
@@ -69,17 +73,22 @@ GenData <- function(clusChar = NULL, stp_from = "10 minutes", n_cores = 1, mc = 
   # +++ Detriminer les tiks pour l'echantillonage de CI +++
   Tiks <- seq(.01, 1, .01) - .005
 
+  # +++ Type de jour concernant le standard deviation +++
+  Tjour <- clusChar$Tjour
+
   ###########################################################################################
   ##### ********************************* Main function ******************************* #####
   ###########################################################################################
 
-  Generation <- function(x, i, stp){
 
-    # # +++ La matrice qui contient les intervale echantilloner pour chaque jour +++
-    # # +++ le probleme est modeliser de tel sorte que chaque ligne de cette matrice
-    # # contient les intervales echantilloner pour chaque 10 echantillons +++
+  Generation <- function(x, dj, i, stp){
+
+    # +++ La matrice qui contient les intervale echantilloner pour chaque jour +++
+    # +++ le probleme est modeliser de tel sorte que chaque ligne de cette matrice
+    # contient les intervales echantilloner pour chaque 10 echantillons +++
     c.name <- matrix(nrow = length(x), ncol = stp)
 
+    # parceque j'include pas xj
     c.name[1,1] <- x[1]
 
     # +++ Markov chain Object, la sequence des etats et la matrice de transition +++
@@ -88,73 +97,53 @@ GenData <- function(clusChar = NULL, stp_from = "10 minutes", n_cores = 1, mc = 
     tm <- attributes(te)$transitionMatrix
 
     for(j in 1:length(x)) {
-
       # +++ Verifier si la matrice des transition contient l'etat initial, sinon
       # mettre a sa place l'etat la plus prbable  +++
-      if(is.na(x[j])){
+      if(is.na(x[j]) || x[j] %in% st == FALSE){
         c.name[j, ] <- rep(NA, stp)
       } else {
+        # +++ Assurer la continuité des etats +++
+        if(x[j+1] %in% st == FALSE || is.na(x[j+1])) {
+                  x[j+1] <- sample(st, 1)
+        }
 
-        if(x[j] %in% st == FALSE) {
-        for (l in j:length(x)) {
-          repeat{
-            x[j] <- x[l+1]
-            if(l+1 == length(x)){
-              x[j] <- sample(st, 1)
-            } else if(x[j] %in% st == TRUE) {
-              break
-            } else {
-              x[j] <- sample(st, 1)
+        # +++ Monter-carlo pour choisir les etats +++
+        re.c.name <- replicate(mc, markovchainSequence(n = stp, markovchain = te,
+                                                                    t0 = x[j], include.t0 = F))
+
+        # +++ Choisir les colonnes qui finissent par l'etat qui vient +++
+        fin.name <- as.matrix(re.c.name[, tail(re.c.name, 1) == x[j+1]])
+
+        # +++ Choisir le chemin le plus probable +++
+        if(ncol(fin.name) != 0) {
+
+          pb.c.name <- as.numeric(apply(fin.name, 2, function(nm) {
+            y <- rep(0, length(nm))
+            for (k in 2:length(nm)) {
+
+              y[k] <- -log(tm[nm[k-1], nm[k]], base = 10)
             }
+
+            a <- sum(y) + 2
+            b <- sd(abs(diff(as.numeric(nm)))) + 1
+
+              if(dj[j] == 1) {
+                ab <- -b  # +++ choisir l'etat qui a le plus grand sd +++
+              } else {
+                ab <- a*b  # +++ choisir l'etat le plus probable +++
+              }
+
+            return(ab)
           }
+          ))
+
+          c.name[j, ] <- fin.name[ , which(pb.c.name == min(pb.c.name))[1]]
+
+          # +++ Sinon repliquer NA values +++
+        } else {
+          c.name[j, ] <- rep(NA, stp) # +++ ou bien <- markovchain::markovchainSequence(n = stp, markovchain = te,
+                                      # t0 = x[j], include.t0 = F) +++
         }
-      }
-
-      # +++ Assurer la continuité des etats +++
-      xj1 <- x[j+1]
-      if(is.na(xj1)){
-        xj1 <- sample(st, 1)
-      } else if(xj1 %in% st == FALSE) {
-        for (l in j:length(x)) {
-          repeat{
-            xj1 = x[l+1]
-            if(xj1 %in% st == TRUE) { break
-            } else {
-              xj1 = sample(st, 1)
-            }
-          }
-        }
-      }
-
-      # +++ Monter-carlo pour choisir les etats +++
-      re.c.name <- replicate(mc, markovchain::markovchainSequence(n = stp, markovchain = te,
-                                                                  t0 = x[j], include.t0 = F))
-
-      # +++ Choisir les colonnes qui finissent par l'etat qui vient +++
-      fin.name <- as.matrix(re.c.name[, tail(re.c.name, 1) == xj1])
-
-      # +++ Choisir le chemin le plus probable +++
-      if(ncol(fin.name) != 0) {
-
-        pb.c.name <- as.numeric(apply(fin.name, 2, function(nm) {
-          y <- rep(1, length(nm))
-          for (k in 2:length(nm)) {
-
-            y[k] <- -log(tm[nm[k-1], nm[k]])
-          }
-          a <- sum(y)
-          ab <- sd(as.numeric(nm))
-          abc <- a*ab
-          return(abc)
-        }
-        ))
-
-        c.name[j, ] <- fin.name[ , which(pb.c.name == min(pb.c.name))[1]]
-
-        # +++ Sinon repliquer NA values +++
-      } else {
-        c.name[j, ] <- rep(NA, stp)
-      }
       }
     }
 
@@ -166,21 +155,14 @@ GenData <- function(clusChar = NULL, stp_from = "10 minutes", n_cores = 1, mc = 
   ###########################################################################################
 
   # +++ Generer les donnees +++
-    G.data <- pbmcapply::pbmcmapply(Generation, intervals, seq_along(intervals), stp, SIMPLIFY = F,
+    G.data <- pbmcmapply(Generation, intervals, Tjour, seq_along(intervals), stp, SIMPLIFY = F,
                        mc.cores = n_cores)
 
     # +++ la liste qui contient les echantillons +++
     rCI <- lapply(G.data, function(x){
-      y <- numeric(length(x))
-      for (i in 1:length(x)) {
-        y[i] <- Tiks[as.numeric(x[i]) + 1] + runif(1,min = -.003, max = .003)
-      }
-      return(y)
+      return(Tiks[as.numeric(x) + 1] + runif(length(x),min = -.003, max = .003))
     })
+return(mapply("*", rCI, Meas$extraRadiation,SIMPLIFY = F))
 
- GHi <- mapply("*", rCI, Meas$extraRadiation,SIMPLIFY = F)
-
-return(GHi)
 }
 #=========================================== Fin ================================================
-

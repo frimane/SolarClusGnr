@@ -13,8 +13,6 @@ Solar irradiance time-series clustering and down-scaling
    
    ``` clPlot ``` a function to generate plots of classes.
    
-   ``` extEHIcalcGeneric ``` a function to generate the extraterrestrial horizontal solar irradiance data at any time resolution.
-   
 # Installation
 
 You can install ``` SolarClusGnr ``` with the [remotes](https://install-github.me/r-lib/remotes) package:

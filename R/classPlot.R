@@ -37,8 +37,12 @@
 #'
 #' @export
 #============================================================================================
-clPlot <- function(meas = NULL, dpgmm = NULL, nc = 2) {
+clPlot <- function(meas = NULL, dpgmm = NULL, nc = 2)
+  {
 #============================================================================================
+
+# In the name of Allah the Merciful
+# =================================
 
   dcid <- meas$matrixCI
   b <- ncol(dcid)
