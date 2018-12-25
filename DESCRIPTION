@@ -6,7 +6,11 @@ Authors@R:
            family = "Frimane",
            role = c("aut", "cre"),
            email = "Azeddine.frimane@uit.ac.ma")
-Description: An unsupervised classification method using Dirichlet process Gaussian mixture model (DPGMM) is proposed in this package. The key 		     benefit of the DPGMM paradigm is that it allows the ability to automatically adapt to the correct complexity level and size of the 	     model, and can, therefore, fit complex probability functions. We apply a Markov chain Monte Carlo algorithm, namely Gibbs sampling 	     for posterior inference. The package also deals with solar irradiance time-series downscaling. It can generate 1-min data from 		     10-15 min solar irradiance databases worldwide. 
+Description: An unsupervised classification method using Dirichlet process Gaussian mixture model (DPGMM) is proposed in this package. 
+             The key benefit of the DPGMM paradigm is that it allows the ability to automatically adapt to the correct complexity level 
+             and size of the model, and can, therefore, fit complex probability functions. We apply a Markov chain Monte Carlo algorithm, 
+             namely Gibbs sampling for posterior inference. The package also deals with solar irradiance time-series downscaling. It can 
+             generate 1-min data worldwide. 
 Author: Azeddine Frimane [aut, cre]
 Maintainer: Azeddine Frimane <Azeddine.frimane@uit.ac.ma> 
 License: GPL (>= 2)
