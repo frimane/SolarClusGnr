@@ -11,7 +11,7 @@ SIR_Data(Ghi_from = NULL, Ehi_from = NULL, Ehi_to = NULL, Xbins = NULL)
 Since the day lengths throughout the year are not equal, the class list is the most suitable.}
 
 \item{Ehi_from}{list of the corresponding extraterrestrial solar irradiance data of Ghi_from with
-the same time resolution. It can generates Ehi_from if you dont have it).}
+the same time resolution.}
 
 \item{Ehi_to}{list of the extraterrestrial solar irradiance data of the 1-min resolution.}
 
