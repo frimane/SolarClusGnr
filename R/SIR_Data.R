@@ -52,7 +52,7 @@ SIR_Dataa <- function(Ghi_from = NULL, Ehi_from = NULL, Ehi_to = NULL, Xbins = N
   a <- unlist(lapply(Tj, function(x) sd(x, na.rm = T)))
   b1 <- quantile(a, probs = .7, na.rm = T)
   b2 <- quantile(a, probs = .5, na.rm = T)
-  b3 <- quantile(a, probs = .9, na.rm = T)
+  b3 <- quantile(a, probs = .95, na.rm = T)
 
   Tjour <- mapply(function(x, j) {
 
