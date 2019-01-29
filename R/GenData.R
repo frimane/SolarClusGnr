@@ -125,7 +125,7 @@ GenDataa <- function(clusChar = NULL, stp_from = "10 minutes", n_cores = 1, mc =
             }
 
             a <- sum(y) + 2
-            b <- sd(abs(diff(as.numeric(nm)))) + 1
+            b <- sd(as.numeric(nm)) + 1
 
               if(dj[j] == 1) {
                 ab <- -b  # +++ choisir l'etat qui a le plus grand sd +++
