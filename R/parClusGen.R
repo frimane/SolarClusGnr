@@ -30,7 +30,7 @@
 #'
 #' @export
 #=============================================================================================
-parClusGenn <- function(measures = NULL, dpgmmRes = NULL, genNewSqClass = FALSE, Xbins = NULL)
+parClusGen <- function(measures = NULL, dpgmmRes = NULL, genNewSqClass = FALSE, Xbins = NULL)
   {
 #=============================================================================================
 
