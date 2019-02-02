@@ -10,7 +10,7 @@
 #' @param Ghi_from list of the global solar irradiance data with 10-min or 15-min loggin interval. Each component represents a day.
 #' Since the day lengths throughout the year are not equal, the class list is the most suitable.
 #' @param Ehi_from list of the corresponding extraterrestrial solar irradiance data of Ghi_from with
-#' the same time resolution. It can generates Ehi_from if you dont have it).
+#' the same time resolution.
 #' @param Ehi_to list of the extraterrestrial solar irradiance data of the 1-min resolution.
 #' @param Xbins numeric(1) represents the number of bins to create the matrix of the daily clearness index distributions.
 #'
@@ -27,7 +27,7 @@
 #'
 #' @export
 #============================================================================================
-SIR_Dataa <- function(Ghi_from = NULL, Ehi_from = NULL, Ehi_to = NULL, Xbins = NULL)
+SIR_Data <- function(Ghi_from = NULL, Ehi_from = NULL, Ehi_to = NULL, Xbins = NULL)
   {
 #============================================================================================
 
