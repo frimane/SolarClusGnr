@@ -11,7 +11,7 @@
 #' @param n_cores numreic(1), is the used number of cores. Defaut is 1. This function uses the parallel calculation for time optimisation.
 #' For WINDOWS users it must be set to 1, since windows platform do not deals with fork() function.
 #' @param mc numreic(1)represents the number of iterations to choose the most probable paths.
-#' Default is 1000.
+#'
 #'
 #' @return a list object of 1-min solar irradiance data. Each element represents a day.
 #'
@@ -31,7 +31,7 @@
 #'
 #' @export
 #=============================================================================================
-GenDataa <- function(clusChar = NULL, stp_from = "10 minutes", n_cores = 1, mc = 1000)
+GenData <- function(clusChar = NULL, stp_from = "10 minutes", n_cores = 1, mc = 700)
   {
 #=============================================================================================
 
