@@ -9,8 +9,9 @@
 #' @param obj object of class SIRData (see \code{\link{SIR_Data}}) or a matrix object containing the clearness index distributions.
 #' @param n.iter numeric(1) represents the number of iterations
 #' @param n.burn numeric(1) represents the number of burn-in iterations (ignored iterations)
-#' @param ci numeric vector that contain the initialization of the indicator variables (the initial assignement of data to clusters).
-#' @param alfa numeric(1) represents the concentration parameter. Default is 0.5.
+#' @param ci numeric(1) represents the initialization of the indicator variables; the initial assignement of data to clusters. The 
+#' best choice is to set it to 1 (Default value).
+#' @param alfa numeric(1) represents the concentration parameter (Default is 0.5)
 #'
 #' @return an object of clusData class containing:
 #' \item{cl_seq}{numeric vector represents the class sequence.}
@@ -41,7 +42,7 @@ DPGMMclus <- function(obj, n.iter, n.burn, ci, alfa) {
 #' @export
 #============================================================================================
 DPGMMclus.SIRData <- function(obj, n.iter = 1000, n.burn = 500,
-                             ci = 4, alfa = .5) {
+                             ci = 1, alfa = .5) {
 
   ClusDirGauss(meas = obj$matrixCI, n_iter = n.iter, n_burn = n.burn,
                zi = sample(1:ci, nrow(obj$matrixCI), replace = T), alf = alfa)
@@ -50,7 +51,7 @@ DPGMMclus.SIRData <- function(obj, n.iter = 1000, n.burn = 500,
 #' @export
 #============================================================================================
 DPGMMclus.default <- function(obj, n.iter = 2000, n.burn = 500,
-                              ci = 4, alfa = .5) {
+                              ci = 1, alfa = .5) {
 
   ClusDirGauss(meas = obj, n_iter = n.iter, n_burn = n.burn,
                zi = sample(1:ci, nrow(obj), replace = T), alf = alfa)
