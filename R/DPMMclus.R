@@ -10,7 +10,7 @@
 #' @param n.iter numeric(1) represents the number of iterations
 #' @param n.burn numeric(1) represents the number of burn-in iterations (ignored iterations)
 #' @param ci numeric(1) represents the initialization of the indicator variables; the initial assignement of data to clusters. The 
-#' best choice is to set it to 1 (Default value).
+#' best choice is to set it to 1 (All data in the same initial cluster).
 #' @param alfa numeric(1) represents the concentration parameter (Default is 0.5)
 #'
 #' @return an object of clusData class containing:
@@ -29,27 +29,31 @@
 #' @examples
 #' data("SIRData_obj")
 #'
-#' newClustering <- DPGMMclus(SIRData_obj, n.iter = 1000, n.burn = 500, ci = 5, alfa = 1)
+#' newClustering <- DPGMMclus(SIRData_obj, n.iter = 1000, n.burn = 500)
 #' # for class ploting see \code{\link{clPlot}}
 #'
 #' @export
 #============================================================================================
-DPGMMclus <- function(obj, n.iter, n.burn) {
+DPGMMclus <- function(obj, n.iter, n.burn, ci, alfa) {
 
   UseMethod("DPGMMclus", obj)
 }
 #============================================================================================
 #' @export
 #============================================================================================
-DPGMMclus.SIRData <- function(obj, n.iter = 1000, n.burn = 500) {
+DPGMMclus.SIRData <- function(obj, n.iter = 1000, n.burn = 500,
+                             ci = 1, alfa = .5) {
 
-  ClusDirGauss(meas = obj$matrixCI, n_iter = n.iter, n_burn = n.burn)
+  ClusDirGauss(meas = obj$matrixCI, n_iter = n.iter, n_burn = n.burn,
+               zi = sample(1:ci, nrow(obj$matrixCI), replace = T), alf = alfa)
 }
 #============================================================================================
 #' @export
 #============================================================================================
-DPGMMclus.default <- function(obj, n.iter = 2000, n.burn = 500) {
+DPGMMclus.default <- function(obj, n.iter = 1000, n.burn = 500,
+                              ci = 1, alfa = .5) {
 
-  ClusDirGauss(meas = obj, n_iter = n.iter, n_burn = n.burn)
+  ClusDirGauss(meas = obj, n_iter = n.iter, n_burn = n.burn,
+               zi = sample(1:ci, nrow(obj), replace = T), alf = alfa)
 }
-#=========================================== Fin ================================================
+#=========================================== Fin ===============================================
