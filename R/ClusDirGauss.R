@@ -19,7 +19,7 @@
 #' @export
 #'
 #============================================================================================
-ClusDirGauss <- function(meas , n_iter = NULL, n_burn = NULL, zi = NULL, alf = NULL) {
+ClusDirGauss <- function(meas , n_iter = NULL, n_burn = NULL) {
 #============================================================================================
 
 #************************
@@ -143,6 +143,7 @@ n_cl <- c()
 d_alf <- c()
 d_beta <- c()
 likely_cluster <- 0
+alf <- 1
 
 # data
 # ----
@@ -158,8 +159,8 @@ dpr <- solve(dco)#chol2inv(chol(dco))
 
 # initial cluster structure
 # -------------------------
-
-n_el <- as.numeric(table(factor(zi)))
+zi <- rep(1, nrow(meas))
+n_el <- 1
 B <- D
 h <- list(as.vector(mvtnorm::rmvnorm(1, dav, dco)),
           B*matrix(rWishart(1, D, dco/D), D, D),
