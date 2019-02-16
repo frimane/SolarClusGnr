@@ -13,7 +13,7 @@ DPGMMclus(obj, n.iter, n.burn, ci, alfa)
 
 \item{n.burn}{numeric(1) represents the number of burn-in iterations (ignored iterations)}
 
-\item{ci}{numeric vector that contain the initialization of the indicator variables (the initial assignement of data to clusters).}
+\item{ci}{numeric(1) represents the initialization of the indicator variables; the initial assignement of data to clusters. The best choice is to set it to 1 (All data in the same initial cluster).}
 
 \item{alfa}{numeric(1) represents the concentration parameter. Default is 0.5.}
 }
@@ -36,7 +36,7 @@ data clustering of class matrix other than irradiance data of class SIRData.
 \examples{
 data("SIRData_obj")
 
-newClustering <- DPGMMclus(SIRData_obj, n.iter = 1000, n.burn = 500, ci = 5, alfa = 1)
+newClustering <- DPGMMclus(SIRData_obj, n.iter = 1000, n.burn = 500)
 # for class ploting see \\code{\\link{clPlot}}
 
 }
