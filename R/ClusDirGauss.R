@@ -159,8 +159,8 @@ dpr <- solve(dco)#chol2inv(chol(dco))
 
 # initial cluster structure
 # -------------------------
-zi <- rep(1, nrow(meas))
-n_el <- nrow(meas)
+zi <- rep(1, N)
+n_el <- as.numeric(table(factor(zi)))
 B <- D
 h <- list(as.vector(mvtnorm::rmvnorm(1, dav, dco)),
           B*matrix(rWishart(1, D, dco/D), D, D),
