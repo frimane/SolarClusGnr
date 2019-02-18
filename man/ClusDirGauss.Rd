@@ -4,8 +4,7 @@
 \alias{ClusDirGauss}
 \title{Dirichlet process Gaussian Mixture Model -- DPGMM --}
 \usage{
-ClusDirGauss(meas, n_iter = NULL, n_burn = NULL, zi = NULL,
-  alf = NULL)
+ClusDirGauss(meas, n_iter = NULL, n_burn = NULL)
 }
 \description{
 Generic function of the nonparametric Bayesian Dirichlet-Gaussian clustering.
