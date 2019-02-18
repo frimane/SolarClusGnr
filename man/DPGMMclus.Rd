@@ -4,7 +4,7 @@
 \alias{DPGMMclus}
 \title{DPGMMclus S3 Method}
 \usage{
-DPGMMclus(obj, n.iter, n.burn, ci, alfa)
+DPGMMclus(obj, n.iter, n.burn)
 }
 \arguments{
 \item{obj}{object of class SIRData (see \code{\link{SIR_Data}}) or a matrix object containing the clearness index distributions.}
@@ -12,10 +12,6 @@ DPGMMclus(obj, n.iter, n.burn, ci, alfa)
 \item{n.iter}{numeric(1) represents the number of iterations}
 
 \item{n.burn}{numeric(1) represents the number of burn-in iterations (ignored iterations)}
-
-\item{ci}{numeric(1) represents the initialization of the indicator variables; the initial assignement of data to clusters. The best choice is to set it to 1 (All data in the same initial cluster).}
-
-\item{alfa}{numeric(1) represents the concentration parameter. Default is 0.5.}
 }
 \value{
 an object of clusData class containing:
