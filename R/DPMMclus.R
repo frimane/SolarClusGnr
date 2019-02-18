@@ -34,18 +34,18 @@
 #'
 #' @export
 #============================================================================================
-DPGMMclus <- function(obj, n.iter, n.burn, ci, alfa) {
+DPGMMclus <- function(obj, n.iter, n.burn) {#, ci, alfa) {
 
   UseMethod("DPGMMclus", obj)
 }
 #============================================================================================
 #' @export
 #============================================================================================
-DPGMMclus.SIRData <- function(obj, n.iter = 1000, n.burn = 500,
-                             ci = 1, alfa = .5) {
+DPGMMclus.SIRData <- function(obj, n.iter = 1000, n.burn = 500) {#,
+                             #ci = 1, alfa = .5) {
 
-  ClusDirGauss(meas = obj$matrixCI, n_iter = n.iter, n_burn = n.burn,
-               zi = sample(1:ci, nrow(obj$matrixCI), replace = T), alf = alfa)
+  ClusDirGauss(meas = obj$matrixCI, n_iter = n.iter, n_burn = n.burn) {#,
+               #zi = sample(1:ci, nrow(obj$matrixCI), replace = T), alf = alfa)
 }
 #============================================================================================
 #' @export
