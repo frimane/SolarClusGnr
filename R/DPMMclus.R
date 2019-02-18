@@ -4,14 +4,11 @@
 #' Nonparametric Bayesian Dirichlet-Gaussian clustering of daily clearness index distributions. It can be also used to perform any
 #' data clustering of class matrix other than irradiance data of class SIRData.
 #'
-#' @usage DPGMMclus(obj, n.iter, n.burn, ci, alfa)
+#' @usage DPGMMclus(obj, n.iter, n.burn)
 #'
 #' @param obj object of class SIRData (see \code{\link{SIR_Data}}) or a matrix object containing the clearness index distributions.
 #' @param n.iter numeric(1) represents the number of iterations
 #' @param n.burn numeric(1) represents the number of burn-in iterations (ignored iterations)
-#' @param ci numeric(1) represents the initialization of the indicator variables; the initial assignement of data to clusters. The 
-#' best choice is to set it to 1 (All data in the same initial cluster).
-#' @param alfa numeric(1) represents the concentration parameter (Default is 0.5)
 #'
 #' @return an object of clusData class containing:
 #' \item{cl_seq}{numeric vector represents the class sequence.}
@@ -34,26 +31,22 @@
 #'
 #' @export
 #============================================================================================
-DPGMMclus <- function(obj, n.iter, n.burn) {#, ci, alfa) {
+DPGMMclus <- function(obj, n.iter, n.burn) {
 
   UseMethod("DPGMMclus", obj)
 }
 #============================================================================================
 #' @export
 #============================================================================================
-DPGMMclus.SIRData <- function(obj, n.iter = 1000, n.burn = 500) {#,
-                             #ci = 1, alfa = .5) {
-
-  ClusDirGauss(meas = obj$matrixCI, n_iter = n.iter, n_burn = n.burn) #,
-               #zi = sample(1:ci, nrow(obj$matrixCI), replace = T), alf = alfa)
+DPGMMclus.SIRData <- function(obj, n.iter = 1000, n.burn = 500) {
+                             
+  ClusDirGauss(meas = obj$matrixCI, n_iter = n.iter, n_burn = n.burn) 
 }
 #============================================================================================
 #' @export
 #============================================================================================
-DPGMMclus.default <- function(obj, n.iter = 1000, n.burn = 500) {#,
-                              #ci = 1, alfa = .5) {
+DPGMMclus.default <- function(obj, n.iter = 1000, n.burn = 500) {
 
-  ClusDirGauss(meas = obj, n_iter = n.iter, n_burn = n.burn) #,
-               #zi = sample(1:ci, nrow(obj), replace = T), alf = alfa)
+  ClusDirGauss(meas = obj, n_iter = n.iter, n_burn = n.burn)
 }
 #=========================================== Fin ===============================================
