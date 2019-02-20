@@ -25,6 +25,9 @@ Generic function to generate high resolution solar irradiance data. It can genar
 15-min solar irradiance databases.
 }
 \examples{
+ 
+# The example and data below are just to give an idea of how the script works and not to judge the performance of the method.
+
 data("genData_obj")
 data("GHI_10_min")
 
