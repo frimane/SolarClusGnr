@@ -30,6 +30,9 @@ Nonparametric Bayesian Dirichlet-Gaussian clustering of daily clearness index di
 data clustering of class matrix other than irradiance data of class SIRData.
 }
 \examples{
+ 
+# The example and data below are just to give an idea of how the script works and not to judge the performance of the method.
+  
 data("SIRData_obj")
 
 newClustering <- DPGMMclus(SIRData_obj, n.iter = 1000, n.burn = 500)
