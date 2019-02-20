@@ -20,6 +20,9 @@
 #' Azeddine Frimane \email{Azeddine.frimane@@uit.ac.ma; Azeddine.frimane@@yahoo.com}
 #'
 #' @examples
+#'
+#' # The example and data below are just to give an idea of how the script works and not to judge the performance of the method.
+#'
 #' data("GHI_10_min", "EHI_10_min", "EHI_1_min")
 #'
 #' # creat an objet of class SIRData
