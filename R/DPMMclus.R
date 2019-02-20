@@ -24,10 +24,13 @@
 #' @author Azeddine Frimane \email{Azeddine.frimane@@uit.ac.ma; Azeddine.frimane@@yahoo.com}
 #'
 #' @examples
+#'
+#' # The examples below are just to give an idea of how the script works and not to judge the performance of the method.
+#'
 #' data("SIRData_obj")
 #'
 #' newClustering <- DPGMMclus(SIRData_obj, n.iter = 1000, n.burn = 500)
-#' # for class ploting see \code{\link{clPlot}}
+#' # for class ploting see clPlot function.
 #'
 #' @export
 #============================================================================================
