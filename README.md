@@ -3,7 +3,7 @@
 ## `SolarClusGnr `
 It is an R-package allows a reproducible research for non-parametric clustering and downscaling of daily solar irradiation time-series. The current version includes: 
 
-   -`SIR_Data` Constructor function of objects of `SIRData` class. Once the user creates a `SIRData` object from his data, he no longer need other inputs, **ALL** the rest work will done automatically.
+   - `SIR_Data` Constructor function of objects of `SIRData` class. Once the user creates a `SIRData` object from his data, he no longer need other inputs, **ALL** the rest work will done automatically.
    
   -`DPGMMclus` S3 Method for non-parametric Bayesian Dirichlet-Gaussian mixture model clustering of daily clearness index distributions. It can be also used to perform any data clustering of class matrix other than irradiance data. It generate an object of class `clusData` containing the clustering outputs.
    
