@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/frimane/SolarClusGnr.svg?branch=master)](https://travis-ci.org/frimane/SolarClusGnr)
+
 # SolarClusGnr: Solar irradiance time-series clustering and down-scaling
 
 ## `SolarClusGnr `
