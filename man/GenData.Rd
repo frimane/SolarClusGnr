@@ -4,7 +4,7 @@
 \alias{GenData}
 \title{Solar irradiance data generation}
 \usage{
-GenData(clusChar = NULL, stp_from = "10 minutes", n_cores = 1, mc = 400)
+GenData(clusChar = NULL, stp_from = "10 minutes", n_cores = 1, mc = 1000)
 }
 \arguments{
 \item{clusChar}{object of class genData.}
