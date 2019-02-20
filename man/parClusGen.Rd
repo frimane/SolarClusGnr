@@ -27,6 +27,9 @@ irradiance data. It also can be used to generate data based on similar climate c
 and a dpgmmRes object corresponding to the similar climate (other than the considered solar irradiance data).
 }
 \examples{
+ 
+# The example and data below are just to give an idea of how the script works and not to judge the performance of the method.
+
 data("clusData_obj")
 data("SIRData_obj")
 
