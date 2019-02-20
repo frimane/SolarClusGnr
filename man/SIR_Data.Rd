@@ -26,6 +26,9 @@ daily clearness index distrubtions. Once you create a SIRData object, you no lon
 rest work will done automatically.
 }
 \examples{
+  
+# The example and data below are just to give an idea of how the script works and not to judge the performance of the method.
+
 data("GHI_10_min", "EHI_10_min", "EHI_1_min")
 
 # creat an objet of class SIRData
