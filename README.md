@@ -22,9 +22,9 @@ Please contact: azeddine.frimane@yahoo.com or azeddine.frimane@uit.ac.ma.
    
 ## Installation
 
-Users are invited to install the development version of `SolarClusGnr`:
+Users can install the development version of `SolarClusGnr`:
 
-This can be done with either the [remotes](https://install-github.me/r-lib/remotes) package:
+with either the [remotes](https://install-github.me/r-lib/remotes) package:
 
 ```
 remotes::install_github("frimane/SolarClusGnr")
