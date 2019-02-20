@@ -20,6 +20,9 @@
 #' @author Azeddine Frimane \email{Azeddine.frimane@@uit.ac.ma; Azeddine.frimane@@yahoo.com}
 #'
 #' @examples
+#'
+#' # The example and data below are just to give an idea of how the script works and not to judge the performance of the method.
+#'
 #' data("clusData_obj")
 #' data("SIRData_obj")
 #'
