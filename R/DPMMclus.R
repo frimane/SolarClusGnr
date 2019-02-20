@@ -25,7 +25,7 @@
 #'
 #' @examples
 #'
-#' # The examples below are just to give an idea of how the script works and not to judge the performance of the method.
+#' # The example and data below are just to give an idea of how the script works and not to judge the performance of the method.
 #'
 #' data("SIRData_obj")
 #'
