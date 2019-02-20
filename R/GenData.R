@@ -4,14 +4,14 @@
 #' Generic function to generate high resolution solar irradiance data. It can genarate 1-min data from 10-min and
 #' 15-min solar irradiance databases.
 #'
-#' @usage GenData(clusChar = NULL, stp_from = "10 minutes", n_cores = 1, mc = 400)
+#' @usage GenData(clusChar = NULL, stp_from = "10 minutes", n_cores = 1, mc = 1000)
 #'
 #' @param clusChar object of class genData.
 #' @param stp_from charachter object with values "10 minutes" or "15 minutes". It represents the original time resolution of the solar irradiance data
 #' @param n_cores numreic(1), is the used number of cores. Defaut is 1. This function uses the parallel calculation for time optimisation.
 #' For WINDOWS users it must be set to 1, since windows platform do not deals with fork() function.
 #' @param mc numreic(1)represents the number of iterations to choose the most probable paths.
-#'
+#' Default is 1000.
 #'
 #' @return a list object of 1-min solar irradiance data. Each element represents a day.
 #'
@@ -31,7 +31,7 @@
 #'
 #' @export
 #=============================================================================================
-GenData <- function(clusChar = NULL, stp_from = "10 minutes", n_cores = 1, mc = 700)
+GenData <- function(clusChar = NULL, stp_from = "10 minutes", n_cores = 1, mc = 1000)
   {
 #=============================================================================================
 
