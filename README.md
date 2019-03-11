@@ -40,10 +40,6 @@ devtools::install_github("frimane/SolarClusGnr")
 
 The original paper that describes the methods implemented in `SolarClusGnr` is:
 
-Frimane, Â., Aggour, M., Ouhammou, B., Bahmad, L., 2018. A dirichlet-multinomial mixture model-based approach for
-daily solar radiation classification. Solar Energy 171, 31–39. URL: http://www.sciencedirect.com/science/article/pii/S0038092X1830611X, doi:https://doi.org/10.1016/j.solener.2018.06.059.
-For bibTeX users:
-
 Frimane, Â., Soubdhan, T., Bright, J.M., Aggour, M., 2019. Nonparametric bayesian-based recognition of solar irradiance conditions: Application to the generation of high temporal resolution synthetic solar irradiance data. Solar Energy 182, 462-479. URL:http://www.sciencedirect.com/science/article/pii/S0038092X19301781, doi:https://doi.org/10.1016/j.solener.2019.02.052.
 
 The BibTex entry:
