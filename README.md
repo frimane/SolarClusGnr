@@ -38,7 +38,7 @@ devtools::install_github("frimane/SolarClusGnr")
 
 ## Citation
 
-The original paper that describes the methods implemented in `SolarClusGnr` is:
+The original paper describing the methods implemented in `SolarClusGnr` is:
 ```
 Frimane, Â., Soubdhan, T., Bright, J.M., Aggour, M., 2019. Nonparametric bayesian-based recognition of solar irradiance conditions: Application to the generation of high temporal resolution synthetic solar irradiance data. Solar Energy 182, 462-479. URL:http://www.sciencedirect.com/science/article/pii/S0038092X19301781, doi:https://doi.org/10.1016/j.solener.2019.02.052. 
 ```
